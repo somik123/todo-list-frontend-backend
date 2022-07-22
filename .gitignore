@@ -1,2 +1,3 @@
-simpletodo/target
-simpletodo/.settings
++simpletodo_backend/target
+simpletodo_backend/.settings
+todo_frontend/node_modules
