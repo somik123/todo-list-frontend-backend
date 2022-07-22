@@ -15,7 +15,7 @@ database:
   driverClass: com.mysql.jdbc.Driver
   user: todo
   password: 68yqU1eqg0JfvFTO
-  url: jdbc:mysql://backend_db:3306/todo
+  url: jdbc:mysql://db:3306/todo
   properties:
     charSet: UTF-8
   maxWaitForConnection: 60s
