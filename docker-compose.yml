@@ -12,7 +12,7 @@ services:
       - 8080:8080
     links:
       - backend_db
-    mem_limit: 200m
+    memory: 200m
 
   backend_db:
     container_name: mariadb
@@ -27,7 +27,7 @@ services:
       MYSQL_USER: todo
     ports:
       - 3306:3306
-    mem_limit: 100m
+    memory: 100m
 
   frontend_react:
     container_name: frontend
@@ -41,4 +41,4 @@ services:
       - 3000:3000
     links:
       - backend
-    mem_limit: 200m
+    memory: 200m
