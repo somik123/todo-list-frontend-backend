@@ -16,7 +16,7 @@ public interface TodoDAO {
 						+ "PRIMARY KEY (id), "
 						+ "name varchar(100), "
 						+ "description varchar(200), "
-						+ "date varchar(50) "
+						+ "date date"
 					+ ")")
 	void createTodoTable();
 	
@@ -29,7 +29,7 @@ public interface TodoDAO {
 	@SqlUpdate("DELETE FROM Todo WHERE id = :id")
 	void deleteTodo(@Bind("id") int id);
 	
-	@SqlQuery("SELECT * FROM Todo")
+	@SqlQuery("SELECT * FROM Todo ORDER BY date DESC")
 	List<Todo> findAll();
 	
 	@SqlQuery("SELECT * FROM Todo WHERE id = :id")
