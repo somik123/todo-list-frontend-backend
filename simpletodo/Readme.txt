@@ -1,0 +1,6 @@
+    GET     /todo (org.somik.todo.resources.TodoResource)
+    POST    /todo (org.somik.todo.resources.TodoResource)
+    GET     /todo/install (org.somik.todo.resources.TodoResource)
+    DELETE  /todo/{id} (org.somik.todo.resources.TodoResource)
+    GET     /todo/{id} (org.somik.todo.resources.TodoResource)
+    PUT     /todo/{id} (org.somik.todo.resources.TodoResource)
