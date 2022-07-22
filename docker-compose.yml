@@ -1,0 +1,41 @@
+version: '3.0'
+services:
+  backend:
+    container_name: frontend
+    build:
+      context: ./simpletodo_backend
+      dockerfile: ./simpletodo_backend/Dockerfile
+      args:
+        environment: dev
+        status: stable
+    ports:
+        - 8080:8080
+    links:
+        - backend_db
+      
+  backend_db:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: GvJS8ZLMvRZtiUGMQB2D
+      MYSQL_PASSWORD: 68yqU1eqg0JfvFTO
+      MYSQL_DATABASE: todo
+      MYSQL_USER: todo
+    ports:
+        - 3306:3306
+    
+  frontend_react:
+    container_name: frontend
+    build:
+      context: ./todo_frontend
+      dockerfile: ./todo_frontend/Dockerfile
+      args:
+        environment: dev
+        status: stable
+    ports:
+        - 3000:3000
+    links:
+        - frontend
