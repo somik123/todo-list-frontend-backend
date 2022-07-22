@@ -11,7 +11,7 @@ import org.somik.todo.api.TodoMapper;
 
 @RegisterRowMapper(TodoMapper.class)
 public interface TodoDAO {
-	@SqlUpdate("CREATE TABLE Todo ("
+	@SqlUpdate("CREATE TABLE IF NOT EXISTS Todo ("
 						+ "id INT NOT NULL AUTO_INCREMENT,"
 						+ "PRIMARY KEY (id), "
 						+ "name varchar(100), "
@@ -34,4 +34,7 @@ public interface TodoDAO {
 	
 	@SqlQuery("SELECT * FROM Todo WHERE id = :id")
 	Todo findById(@Bind("id") int id);
+	
+	@SqlQuery("SELECT * FROM Todo WHERE name = :name")
+	Todo findByName(@Bind("name") String name);
 }

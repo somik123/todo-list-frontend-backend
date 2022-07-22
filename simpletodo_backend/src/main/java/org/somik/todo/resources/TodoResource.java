@@ -26,14 +26,16 @@ public class TodoResource {
 	}
 	
 	@POST
-	public void addTodo(Todo todo) {
+	public Todo addTodo(Todo todo) {
 		todoDao.insertTodo(todo.getName(), todo.getDescription(), todo.getDate());
+		return todoDao.findByName(todo.getName());
 	}
 	
 	@PUT
 	@Path("/{id}")
-	public void updateTodo(@PathParam("id") int id, Todo todo) {
+	public Todo updateTodo(@PathParam("id") int id, Todo todo) {
 		todoDao.updateTodo(id, todo.getName(), todo.getDescription(), todo.getDate());
+		return todoDao.findById(id);
 	}
 	
 	@DELETE
