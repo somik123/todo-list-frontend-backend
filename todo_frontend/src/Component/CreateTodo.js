@@ -70,17 +70,17 @@ export default class CreateTodo extends Component {
             return(
                 <div className="container">
                     <div className="form-group">
-                        <lable htmlFor="name">Name</lable>
+                        <span htmlFor="name">Name</span>
                         <input type="text" className="form-control" id="TodoName" required 
                         value={this.state.name} onChange={this.onChangeName} name="name" />
                     </div>
                     <div className="form-group">
-                        <lable htmlFor="description">Description</lable>
+                        <span htmlFor="description">Description</span>
                         <input type="text" className="form-control" id="TodoDescription" required 
                         value={this.state.description} onChange={this.onChangeDescription} name="description" />
                     </div>
                     <div className="form-group">
-                        <lable htmlFor="date">Date</lable>
+                        <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" required 
                         value={this.state.date} onChange={this.onChangeDate} name="date" />
                     </div>

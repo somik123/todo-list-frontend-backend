@@ -55,22 +55,24 @@ export default class TodoList extends Component {
 
         return(
             <div className="container">
-                <div>
+                <div className="text-right">
                     <Link to={"/add"}>
-                        <button type="button" className="btn btn-primary">New</button>
+                        <button type="button" className="btn btn-primary">New Todo</button>
                     </Link>
                 </div>
                 <div>
                     {
                         todoList && todoList.map( (todo, index) => (
-                            <div className="border border-primary rounded mt-3 text-start pl-3 pt-1 pb-1">
+                            <div className="border border-primary rounded mt-3 text-start pl-3 pt-1 pb-1" key={todo.id}>
                                 <div className="row text-start">
                                     <div className="col-10">
-                                        <h3>{todo.name}</h3>
+                                        <Link to={"/edit/" + todo.id}>
+                                            <h3>{todo.name}</h3>
+                                        </Link>
                                         &#x1F4C5; {todo.date} - {todo.description}<br />
                                     </div>
-                                    <div className="col-2 mt-1">
-                                        <button type="button" className="btn btn-outline-secondary" onClick={()=> this.deleteTodo(todo)}>&#x2610;</button>
+                                    <div className="col-2">
+                                        <button type="button" className="btn btn-outline-secondary float-right mt-3 mr-4" onClick={()=> this.deleteTodo(todo)}>&#x2610;</button>
                                     </div>
                                 </div>
                             </div>

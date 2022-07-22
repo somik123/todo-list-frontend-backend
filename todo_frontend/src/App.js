@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoList from './Component/TodoList';
 import CreateTodo from './Component/CreateTodo';
+import EditTodo from './Component/EditTodo';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={TodoList} />
           <Route exact path='/add' component={CreateTodo} />
+          <Route path='/edit/:id' component={EditTodo} />
         </Switch>
         </div>
       </Router>

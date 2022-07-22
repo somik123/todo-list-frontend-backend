@@ -13,7 +13,7 @@ class TodoDataService{
         return axios.get(API_BASE_URL + "/" + id);
     }
     updateTodoById(id,todo){
-        return axios.put(API_BASE_URL + "/" + id);
+        return axios.put(API_BASE_URL + "/" + id, todo);
     }
     deleteTodo(id){
         return axios.delete(API_BASE_URL + "/" + id);
