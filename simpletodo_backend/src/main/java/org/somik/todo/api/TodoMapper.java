@@ -12,7 +12,8 @@ public class TodoMapper implements RowMapper<Todo> {
 	public Todo map(ResultSet rs, StatementContext ctx) throws SQLException {
 		// TODO Auto-generated method stub
 		//System.out.println(rs);
-		return new Todo(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("date"));
+		return new Todo(rs.getInt("id"), rs.getString("name"), rs.getString("description"), 
+				rs.getString("date"),rs.getBoolean("completed") );
 	}
 
 }

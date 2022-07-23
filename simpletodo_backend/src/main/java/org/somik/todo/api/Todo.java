@@ -6,25 +6,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @RegisterRowMapper(TodoMapper.class)
 public class Todo {
-	
+
 	public Todo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Todo(int id, String name, String description, String date) {
+	public Todo(String name, String description, String date, Boolean completed) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.date = date;
+		this.completed = completed;
+	}
+
+	public Todo(int id, String name, String description, String date, Boolean completed) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.date = date;
-	}
-
-	public Todo(String name, String description, String date) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.date = date;
+		this.completed = completed;
 	}
 
 	@JsonProperty
@@ -38,11 +40,9 @@ public class Todo {
 	
 	@JsonProperty
 	private String date;
-
-	@Override
-	public String toString() {
-		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + "]";
-	}
+	
+	@JsonProperty
+	private Boolean completed;
 
 	public int getId() {
 		return id;
@@ -75,6 +75,19 @@ public class Todo {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
+
+	public Boolean getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
+	}
+
+	@Override
+	public String toString() {
+		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + ", completed="
+				+ completed + "]";
+	}
+
 }

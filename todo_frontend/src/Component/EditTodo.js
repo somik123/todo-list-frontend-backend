@@ -11,6 +11,8 @@ export default class EditTodo extends Component{
         this.updateTodo = this.updateTodo.bind(this);
         this.getTodo = this.getTodo.bind(this);
 
+        this.deleteTodo = this.deleteTodo.bind(this);
+
         this.state = {
             currentTodo: {
                 id: null,
@@ -85,6 +87,19 @@ export default class EditTodo extends Component{
             alert("Name and Dates are compulsory fields.");
         }
     }
+
+
+    deleteTodo(todo){
+        TodoService.deleteTodo(todo.id)
+            .then(response => {
+                console.log(response.data);
+                this.refreshList();
+            })
+            .catch(e =>{
+                console.log(e);
+            });
+    }
+
 
     render(){
         const { currentTodo } = this.state;

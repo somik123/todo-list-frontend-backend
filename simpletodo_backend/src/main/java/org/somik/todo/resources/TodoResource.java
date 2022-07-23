@@ -34,7 +34,7 @@ public class TodoResource {
 	@PUT
 	@Path("/{id}")
 	public Todo updateTodo(@PathParam("id") int id, Todo todo) {
-		todoDao.updateTodo(id, todo.getName(), todo.getDescription(), todo.getDate());
+		todoDao.updateTodo(id, todo.getName(), todo.getDescription(), todo.getDate(), todo.getCompleted());
 		return todoDao.findById(id);
 	}
 	

@@ -16,15 +16,18 @@ public interface TodoDAO {
 						+ "PRIMARY KEY (id), "
 						+ "name varchar(100), "
 						+ "description varchar(200), "
-						+ "date date"
+						+ "date date, "
+						+ "completed BOOLEAN DEFAULT false"
 					+ ")")
 	void createTodoTable();
 	
 	@SqlUpdate("INSERT INTO Todo (name, description, date) values (:name, :desc, :date)")
 	void insertTodo(@Bind("name") String name, @Bind("desc") String desc, @Bind("date") String date);
 	
-	@SqlUpdate("UPDATE Todo set name = :name, description = :desc, date = :date WHERE id = :id")
-	void updateTodo(@Bind("id") int id, @Bind("name") String name, @Bind("desc") String desc, @Bind("date") String date);
+	@SqlUpdate("UPDATE Todo set name = :name, description = :desc, date = :date, completed= :completed WHERE id = :id")
+	void updateTodo(@Bind("id") int id, @Bind("name") String name, 
+			@Bind("desc") String desc, @Bind("date") String date,
+			@Bind("completed") Boolean completed);
 	
 	@SqlUpdate("DELETE FROM Todo WHERE id = :id")
 	void deleteTodo(@Bind("id") int id);
