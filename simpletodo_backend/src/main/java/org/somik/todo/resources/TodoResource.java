@@ -28,7 +28,7 @@ public class TodoResource {
 
 	public TodoResource(TodoDAO todo) {
 		this.todoDao = todo;
-		dtFormat = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+		dtFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		minDate = LocalDate.parse("2022-01-01", dtFormat);
 		maxDate = LocalDate.parse("2032-12-31", dtFormat);
 	}
