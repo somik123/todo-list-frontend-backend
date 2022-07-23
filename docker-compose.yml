@@ -3,7 +3,7 @@ services:
   db:
     container_name: mariadb
     image: mariadb
-    restart: always
+    restart: unless-stopped
     volumes:
       - /var/lib/mysql:/var/lib/mysql
     environment:
@@ -16,6 +16,7 @@ services:
 
   frontend_react:
     container_name: frontend
+    restart: unless-stopped
     build:
       context: ./todo_frontend
       dockerfile: ./Dockerfile
@@ -24,11 +25,10 @@ services:
         status: stable
     ports:
       - 3000:3000
-    links:
-      - backend
 
   backend:
     container_name: backend
+    restart: unless-stopped
     build:
       context: ./simpletodo_backend
       dockerfile: ./Dockerfile
@@ -37,5 +37,8 @@ services:
         status: stable
     ports:
       - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
     links:
       - db

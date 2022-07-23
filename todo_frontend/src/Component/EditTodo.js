@@ -82,10 +82,15 @@ export default class EditTodo extends Component{
             TodoService.updateTodoById(this.state.id, data)
                 .then(response =>{
                     console.log(response.data);
-                    this.setState({
-                        redirectToListView: true,
-                        editHasError: false
-                    });
+                    if(response.data.name == this.state.name){
+                        this.setState({
+                            redirectToListView: true,
+                            editHasError: false
+                        });
+                    } else {
+                        // Set the flag to display the error message
+                        this.setState({editHasError: true});
+                    }
                 })
                 .catch(e=>{console.log(e)});
         }

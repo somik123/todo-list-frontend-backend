@@ -16,4 +16,9 @@ COPY --from=builder /app/config.yml /usr/app/config.yml
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/usr/app/simpletodo-1.0-SNAPSHOT.jar","server","/usr/app/config.yml"]
+#ENTRYPOINT 
+
+# start app
+CMD ["java", "-jar", "/usr/app/simpletodo-1.0-SNAPSHOT.jar","server","/usr/app/config.yml"]
+
+

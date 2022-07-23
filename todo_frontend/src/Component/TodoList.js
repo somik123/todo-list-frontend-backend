@@ -87,8 +87,14 @@ export default class TodoList extends Component {
                         addHasError: false
                     });
                     console.log(response.data);
-                    // Refresh the todo list display
-                    this.retrieveTodoList();
+                    
+                    if(response.data.name == this.state.name){
+                        // Refresh the todo list display
+                        this.retrieveTodoList();
+                    } else {
+                        // Set the flag to display the error message
+                        this.setState({addHasError: true});
+                    }
                 })
                 .catch(e =>{console.log(e)});
         }
