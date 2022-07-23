@@ -96,12 +96,12 @@ export default class EditTodo extends Component{
                 <div className="container">
                     <div className="form-group">
                         <span htmlFor="name">Name</span>
-                        <input type="text" className="form-control" id="TodoName" required maxLength={20}
+                        <input type="text" className="form-control" id="TodoName" required maxLength={80}
                         value={currentTodo.name} onChange={this.onChangeName} name="name" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
-                        <input type="text" className="form-control" id="TodoDescription" maxLength={80}
+                        <input type="text" className="form-control" id="TodoDescription" maxLength={160}
                         value={currentTodo.description} onChange={this.onChangeDescription} name="description" />
                     </div>
                     <div className="form-group">
