@@ -1,0 +1,328 @@
+{
+	"id": "7e0685c6-53a6-4e03-8216-1670521d472a",
+	"name": "Todo CRUD",
+	"timestamp": "2022-07-23T12:24:49.097Z",
+	"collection_id": "0-c0c04228-979e-4cd1-8c2b-43633b91e9d1",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 10,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "48e6cc2e-da84-436d-b907-c8204e7ffaab",
+			"name": "Install Test",
+			"url": "http://130.61.228.199:8080/todo/install",
+			"time": 358,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert install was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert install was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				358
+			],
+			"allTests": [
+				{
+					"Assert install was successful": true
+				}
+			]
+		},
+		{
+			"id": "1f64b25c-ad69-4f09-a539-c0ea3aeb8265",
+			"name": "Add New",
+			"url": "http://130.61.228.199:8080/todo",
+			"time": 178,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert save was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert save was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				178
+			],
+			"allTests": [
+				{
+					"Assert save was successful": true
+				}
+			]
+		},
+		{
+			"id": "566ec4d0-e2a2-4abc-b96d-b0ace406cce2",
+			"name": "Get All",
+			"url": "http://130.61.228.199:8080/todo",
+			"time": 180,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Ensure we get json as reply": true
+			},
+			"testPassFailCounts": {
+				"Ensure we get json as reply": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				180
+			],
+			"allTests": [
+				{
+					"Ensure we get json as reply": true
+				}
+			]
+		},
+		{
+			"id": "79412184-7910-4490-9e9a-9f1456b84399",
+			"name": "Get One",
+			"url": "http://130.61.228.199:8080/todo/34",
+			"time": 174,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert same item was retrieved": true
+			},
+			"testPassFailCounts": {
+				"Assert same item was retrieved": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Assert same item was retrieved": true
+				}
+			]
+		},
+		{
+			"id": "1909062b-8f55-4afe-bc0b-275e52e49532",
+			"name": "Update One",
+			"url": "http://130.61.228.199:8080/todo/34",
+			"time": 177,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert update was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert update was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				177
+			],
+			"allTests": [
+				{
+					"Assert update was successful": true
+				}
+			]
+		},
+		{
+			"id": "c029f8f2-d397-46cc-a561-7c38c2a08c42",
+			"name": "Update Completion Checked",
+			"url": "http://130.61.228.199:8080/todo/34/1",
+			"time": 174,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert check was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert check was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Assert check was successful": true
+				}
+			]
+		},
+		{
+			"id": "0398d63b-a9a3-4d3e-a7d9-64ef6e3836c3",
+			"name": "Update Completion Unchecked",
+			"url": "http://130.61.228.199:8080/todo/34/0",
+			"time": 174,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert uncheck was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert uncheck was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Assert uncheck was successful": true
+				}
+			]
+		},
+		{
+			"id": "e359547b-65fd-44ae-92b6-c7c89eca8281",
+			"name": "Confirm Item exists",
+			"url": "http://130.61.228.199:8080/todo/34",
+			"time": 173,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert item still exists": true
+			},
+			"testPassFailCounts": {
+				"Assert item still exists": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				173
+			],
+			"allTests": [
+				{
+					"Assert item still exists": true
+				}
+			]
+		},
+		{
+			"id": "585d14e9-de67-4cf4-b849-09a6686b85be",
+			"name": "Delete One",
+			"url": "http://130.61.228.199:8080/todo/34",
+			"time": 175,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Assert delete was successful": true
+			},
+			"testPassFailCounts": {
+				"Assert delete was successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				175
+			],
+			"allTests": [
+				{
+					"Assert delete was successful": true
+				}
+			]
+		},
+		{
+			"id": "fe08562a-96d9-45db-89ea-74a6740a5fc2",
+			"name": "Confirm Item deleted",
+			"url": "http://130.61.228.199:8080/todo/34",
+			"time": 174,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Assert item was deleted": true
+			},
+			"testPassFailCounts": {
+				"Assert item was deleted": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Assert item was deleted": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1937,
+	"collection": {
+		"requests": [
+			{
+				"id": "48e6cc2e-da84-436d-b907-c8204e7ffaab",
+				"method": "GET"
+			},
+			{
+				"id": "1f64b25c-ad69-4f09-a539-c0ea3aeb8265",
+				"method": "POST"
+			},
+			{
+				"id": "566ec4d0-e2a2-4abc-b96d-b0ace406cce2",
+				"method": "GET"
+			},
+			{
+				"id": "79412184-7910-4490-9e9a-9f1456b84399",
+				"method": "GET"
+			},
+			{
+				"id": "1909062b-8f55-4afe-bc0b-275e52e49532",
+				"method": "PUT"
+			},
+			{
+				"id": "c029f8f2-d397-46cc-a561-7c38c2a08c42",
+				"method": "GET"
+			},
+			{
+				"id": "0398d63b-a9a3-4d3e-a7d9-64ef6e3836c3",
+				"method": "GET"
+			},
+			{
+				"id": "e359547b-65fd-44ae-92b6-c7c89eca8281",
+				"method": "GET"
+			},
+			{
+				"id": "585d14e9-de67-4cf4-b849-09a6686b85be",
+				"method": "DELETE"
+			},
+			{
+				"id": "fe08562a-96d9-45db-89ea-74a6740a5fc2",
+				"method": "GET"
+			}
+		]
+	}
+}

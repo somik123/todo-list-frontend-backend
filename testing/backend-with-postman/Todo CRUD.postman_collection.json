@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "c0c04228-979e-4cd1-8c2b-43633b91e9d1",
+		"name": "Todo CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Install Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert install was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    pm.expect(reply_obj[\"Result\"]).to.equal(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/install",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"install"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert save was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    var saved_obj = JSON.parse(pm.collectionVariables.get(\"og_json\"));\r",
+							"\r",
+							"    pm.expect(reply_obj[\"id\"]).greaterThan(0); // ID must be valid\r",
+							"    pm.expect(reply_obj[\"name\"]).to.equal(saved_obj[\"name\"]); // Name must match\r",
+							"    pm.expect(reply_obj[\"description\"]).to.equal(saved_obj[\"description\"]); // Description must match\r",
+							"    pm.expect(reply_obj[\"date\"]).to.equal(saved_obj[\"date\"]); // Date must match\r",
+							"    pm.expect(reply_obj[\"completed\"]).to.equal(saved_obj[\"completed\"]); // Completions must match\r",
+							"\r",
+							"    pm.collectionVariables.set(\"post_json\",reply); // Save to collections for get method\r",
+							"    console.log(reply_obj[\"id\"]);\r",
+							"    pm.collectionVariables.set(\"post_id\",reply_obj[\"id\"]); // Save to collections for get/update/delete methods\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{og_json}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ensure we get json as reply\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert same item was retrieved\", function(){\r",
+							"    // Ensure reply is OK\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    var saved_obj = JSON.parse(pm.collectionVariables.get(\"post_json\"));\r",
+							"    pm.expect(reply_obj[\"id\"]).to.equal(saved_obj[\"id\"]); // Id must match\r",
+							"    pm.expect(reply_obj[\"name\"]).to.equal(saved_obj[\"name\"]); // Name must match\r",
+							"    pm.expect(reply_obj[\"description\"]).to.equal(saved_obj[\"description\"]); // Description must match\r",
+							"    pm.expect(reply_obj[\"date\"]).to.equal(saved_obj[\"date\"]); // Date must match\r",
+							"    pm.expect(reply_obj[\"completed\"]).to.equal(saved_obj[\"completed\"]); // Completions must match\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert update was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    var saved_obj = JSON.parse(pm.collectionVariables.get(\"alt_json\"));\r",
+							"    pm.expect(reply_obj[\"id\"]).to.equal(pm.collectionVariables.get(\"post_id\")); // Id must match saved\r",
+							"    pm.expect(reply_obj[\"name\"]).to.equal(saved_obj[\"name\"]); // Name must match\r",
+							"    pm.expect(reply_obj[\"description\"]).to.equal(saved_obj[\"description\"]); // Description must match\r",
+							"    pm.expect(reply_obj[\"date\"]).to.equal(saved_obj[\"date\"]); // Date must match\r",
+							"    pm.expect(reply_obj[\"completed\"]).to.equal(saved_obj[\"completed\"]); // Completions must match\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{alt_json}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Completion Checked",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert check was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    var saved_obj = JSON.parse(pm.collectionVariables.get(\"alt_json\"));\r",
+							"    pm.expect(reply_obj[\"id\"]).to.equal(pm.collectionVariables.get(\"post_id\")); // Id must match saved\r",
+							"    pm.expect(reply_obj[\"name\"]).to.equal(saved_obj[\"name\"]); // Name must match\r",
+							"    pm.expect(reply_obj[\"description\"]).to.equal(saved_obj[\"description\"]); // Description must match\r",
+							"    pm.expect(reply_obj[\"date\"]).to.equal(saved_obj[\"date\"]); // Date must match\r",
+							"    pm.expect(reply_obj[\"completed\"]).to.not.equal(saved_obj[\"completed\"]); // Completions must NOT match\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Completion Unchecked",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert uncheck was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    var saved_obj = JSON.parse(pm.collectionVariables.get(\"alt_json\"));\r",
+							"    pm.expect(reply_obj[\"id\"]).to.equal(pm.collectionVariables.get(\"post_id\")); // Id must match saved\r",
+							"    pm.expect(reply_obj[\"name\"]).to.equal(saved_obj[\"name\"]); // Name must match\r",
+							"    pm.expect(reply_obj[\"description\"]).to.equal(saved_obj[\"description\"]); // Description must match\r",
+							"    pm.expect(reply_obj[\"date\"]).to.equal(saved_obj[\"date\"]); // Date must match\r",
+							"    pm.expect(reply_obj[\"completed\"]).to.equal(saved_obj[\"completed\"]); // Completions must NOT match\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}/0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Item exists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert item still exists\", function(){\r",
+							"    // Ensure reply is OK\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete One",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert delete was successful\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"\r",
+							"    var reply = pm.response.text();\r",
+							"    \r",
+							"    // Log for debugging\r",
+							"    console.log(reply);\r",
+							"    console.log(pm.collectionVariables.get(\"post_json\"));\r",
+							"\r",
+							"    var reply_obj = JSON.parse(reply);\r",
+							"    pm.expect(reply_obj[\"Result\"]).to.equal(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Item deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Assert item was deleted\", function(){\r",
+							"    // Ensure reply is OK\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{post_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://130.61.228.199:8080/todo",
+			"type": "default"
+		},
+		{
+			"key": "og_json",
+			"value": "{\"name\":\"Test Data Add\",\"description\":\"This data was added by PostMan\",\"date\":\"2022-07-23\",\"completed\":false}",
+			"type": "default"
+		},
+		{
+			"key": "alt_json",
+			"value": "{\"name\":\"Updated Test Data\",\"description\":\"Data that was added, then modified by PostMan\",\"date\":\"2022-07-30\",\"completed\":false}",
+			"type": "default"
+		},
+		{
+			"key": "post_json",
+			"value": ""
+		},
+		{
+			"key": "post_id",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,381 @@
+{
+  "id": "3ae150a2-e201-4270-883c-db492c39e6ef",
+  "version": "2.0",
+  "name": "todo list frontend",
+  "url": "http://todo.somik.org:3000",
+  "tests": [{
+    "id": "7ec1815c-452a-4f0d-a097-576ddaf1ba59",
+    "name": "basic UI test",
+    "commands": [{
+      "id": "0e6e4942-2aad-4c45-92b4-663a0026db4e",
+      "comment": "Open ReactJS frontend",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8d4bacb-e513-4960-8448-08aa1daf2fb3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1488x841",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "caa1f2ea-db49-442a-8e0d-d011db7c128c",
+      "comment": "Click add button",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'New Todo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f41f4aeb-3e89-43a0-9106-7dd2c93175e2",
+      "comment": "Click on title text box",
+      "command": "click",
+      "target": "id=TodoName",
+      "targets": [
+        ["id=TodoName", "id"],
+        ["name=name", "name"],
+        ["css=#TodoName", "css:finder"],
+        ["xpath=//input[@id='TodoName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a2f46d7-ea0c-4665-85b6-1e8f20e97506",
+      "comment": "Type in task title",
+      "command": "type",
+      "target": "id=TodoName",
+      "targets": [
+        ["id=TodoName", "id"],
+        ["name=name", "name"],
+        ["css=#TodoName", "css:finder"],
+        ["xpath=//input[@id='TodoName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "New Task"
+    }, {
+      "id": "8d874854-e22b-4808-bc42-09da2267468c",
+      "comment": "Type in the description",
+      "command": "type",
+      "target": "id=TodoDescription",
+      "targets": [
+        ["id=TodoDescription", "id"],
+        ["css=#TodoDescription", "css:finder"],
+        ["xpath=//input[@id='TodoDescription']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "New description"
+    }, {
+      "id": "a9722f0f-1790-49e2-80f1-b8d4db9a7e7f",
+      "comment": "Choose the date",
+      "command": "click",
+      "target": "id=TodoDate",
+      "targets": [
+        ["id=TodoDate", "id"],
+        ["name=date", "name"],
+        ["css=#TodoDate", "css:finder"],
+        ["xpath=//input[@id='TodoDate']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a1292b0-afcb-43f4-9347-70340e97a5d2",
+      "comment": "",
+      "command": "click",
+      "target": "id=TodoDate",
+      "targets": [
+        ["id=TodoDate", "id"],
+        ["name=date", "name"],
+        ["css=#TodoDate", "css:finder"],
+        ["xpath=//input[@id='TodoDate']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cfcee871-d15d-49bf-97d8-d4c022256685",
+      "comment": "Date selected",
+      "command": "type",
+      "target": "id=TodoDate",
+      "targets": [
+        ["id=TodoDate", "id"],
+        ["name=date", "name"],
+        ["css=#TodoDate", "css:finder"],
+        ["xpath=//input[@id='TodoDate']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2025-01-14"
+    }, {
+      "id": "378fca59-ba87-4b4e-a987-c421ec733756",
+      "comment": "Click save button",
+      "command": "click",
+      "target": "css=.text-right:nth-child(5) > .btn",
+      "targets": [
+        ["css=.text-right:nth-child(5) > .btn", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5663c92-ae29-4b8b-95a1-03c16a20bdd0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.shadow-sm:nth-child(3) .btn",
+      "targets": [
+        ["css=.shadow-sm:nth-child(3) .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[3]/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d94f0d91-1a26-41ac-85d5-732a1944f05f",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.shadow-sm:nth-child(4) .btn",
+      "targets": [
+        ["css=.shadow-sm:nth-child(4) .btn", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div[4]/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25ebf4a8-bc1c-4de8-9f6d-79b87003b5a7",
+      "comment": "Click on checkbox",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) .btn > img",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) .btn > img", "css:finder"],
+        ["xpath=//img[@alt='empty']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/button/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a39dd57e-7ee3-4dc2-b551-5ca7084384a5",
+      "comment": "Click on title to edit",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) h3",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) h3", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'New Task')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "54830b2d-2aae-42a6-bddc-0f6a270b1137",
+      "comment": "Click on title text box",
+      "command": "click",
+      "target": "id=TodoName",
+      "targets": [
+        ["id=TodoName", "id"],
+        ["name=name", "name"],
+        ["css=#TodoName", "css:finder"],
+        ["xpath=//input[@id='TodoName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a633c835-58ac-4a0c-ab05-bd119bf97581",
+      "comment": "Type in the new title",
+      "command": "type",
+      "target": "id=TodoName",
+      "targets": [
+        ["id=TodoName", "id"],
+        ["name=name", "name"],
+        ["css=#TodoName", "css:finder"],
+        ["xpath=//input[@id='TodoName']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Edited Task"
+    }, {
+      "id": "7afee2e8-b5df-4a4f-bf34-14c6528cda7a",
+      "comment": "Save edited title",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Update')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "997736f0-667c-4d6d-b249-2cdb7d1694cc",
+      "comment": "Click on checkbox",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) .btn > img",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) .btn > img", "css:finder"],
+        ["xpath=//img[@alt='tick']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/button/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "236553c5-eb60-4c21-a474-d130a6840c63",
+      "comment": "Click on title to edit it again",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) h3",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) h3", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Edited Task')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a95871a4-b833-4a72-8f0e-e35492a362ca",
+      "comment": "Click on the description text box",
+      "command": "click",
+      "target": "id=TodoDescription",
+      "targets": [
+        ["id=TodoDescription", "id"],
+        ["css=#TodoDescription", "css:finder"],
+        ["xpath=//input[@id='TodoDescription']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a74df59e-dd96-4028-bf27-1fb312a0bcae",
+      "comment": "Type in the description",
+      "command": "type",
+      "target": "id=TodoDescription",
+      "targets": [
+        ["id=TodoDescription", "id"],
+        ["css=#TodoDescription", "css:finder"],
+        ["xpath=//input[@id='TodoDescription']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Edited description"
+    }, {
+      "id": "2728a8e7-9294-4ec7-adc3-3e1dfc35244a",
+      "comment": "Click save button",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Update')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5844870-c165-4969-8f72-740bc201eb4d",
+      "comment": "Click on title to edit it again",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) h3",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) h3", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Edited Task')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "df6cd6af-5025-4039-8651-46a2abf8134e",
+      "comment": "Click on the date picker",
+      "command": "click",
+      "target": "id=TodoDate",
+      "targets": [
+        ["id=TodoDate", "id"],
+        ["name=date", "name"],
+        ["css=#TodoDate", "css:finder"],
+        ["xpath=//input[@id='TodoDate']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "739aac04-6b8c-488a-9787-0fc8334466bf",
+      "comment": "Choose a date",
+      "command": "type",
+      "target": "id=TodoDate",
+      "targets": [
+        ["id=TodoDate", "id"],
+        ["name=date", "name"],
+        ["css=#TodoDate", "css:finder"],
+        ["xpath=//input[@id='TodoDate']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2025-01-23"
+    }, {
+      "id": "eb771ade-c014-4d9b-a9bd-628c752492f8",
+      "comment": "Save changes",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Update')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "070016bc-3d96-4943-8fd7-e4d4d793c0a1",
+      "comment": "Click on the checkbox",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) .btn > img",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) .btn > img", "css:finder"],
+        ["xpath=//img[@alt='empty']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/button/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "754e047b-4ba9-4b61-bf27-4e20650a84c6",
+      "comment": "Click on title to edit/delete it",
+      "command": "click",
+      "target": "css=.shadow-sm:nth-child(1) h3",
+      "targets": [
+        ["css=.shadow-sm:nth-child(1) h3", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[2]/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Edited Task')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0120c594-c1d7-4311-a307-c5caf5b09b58",
+      "comment": "Delete it",
+      "command": "click",
+      "target": "css=.btn-danger",
+      "targets": [
+        ["css=.btn-danger", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div[4]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ba4acd49-a5a6-47e2-a906-ed1c877673c3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://todo.somik.org:3000/"],
+  "plugins": []
+}
