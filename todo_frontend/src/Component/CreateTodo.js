@@ -32,24 +32,28 @@ export default class CreateTodo extends Component {
     }
 
     saveTodo(){
-        var data = {
-            name: this.state.name,
-            description: this.state.description,
-            date: this.state.date
-        };
+        if(this.state.name != "" && this.state.date != ""){
+            var data = {
+                name: this.state.name,
+                description: this.state.description,
+                date: this.state.date
+            };
 
-        TodoService.createTodo(data)
-            .then(response => {
-                this.setState({
-                    name: response.data.name,
-                    description: response.data.description,
-                    date: response.data.date,
-                    completed: true
-                });
-                console.log(response.data);
-            })
-            .catch(e =>{console.log(e)});
-
+            TodoService.createTodo(data)
+                .then(response => {
+                    this.setState({
+                        name: response.data.name,
+                        description: response.data.description,
+                        date: response.data.date,
+                        completed: true
+                    });
+                    console.log(response.data);
+                })
+                .catch(e =>{console.log(e)});
+        }
+        else{
+            alert("Name and Date are compulsory fields.");
+        }
             
     }
 
@@ -71,12 +75,12 @@ export default class CreateTodo extends Component {
                 <div className="container">
                     <div className="form-group">
                         <span htmlFor="name">Name</span>
-                        <input type="text" className="form-control" id="TodoName" required 
+                        <input type="text" className="form-control" id="TodoName" required maxLength={20}
                         value={this.state.name} onChange={this.onChangeName} name="name" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
-                        <input type="text" className="form-control" id="TodoDescription" required 
+                        <input type="text" className="form-control" id="TodoDescription" maxLength={80}
                         value={this.state.description} onChange={this.onChangeDescription} name="description" />
                     </div>
                     <div className="form-group">
@@ -85,7 +89,7 @@ export default class CreateTodo extends Component {
                         value={this.state.date} onChange={this.onChangeDate} name="date" />
                     </div>
 
-                    <button onClick={this.saveTodo} className="btn btn-success">Save</button>
+                    <button onClick={this.saveTodo} className="btn btn-primary"> Save </button>
                 </div>
             )
         }

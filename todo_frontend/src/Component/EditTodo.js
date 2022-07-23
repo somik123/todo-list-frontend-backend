@@ -73,12 +73,17 @@ export default class EditTodo extends Component{
     }
 
     updateTodo(){
-        TodoService.updateTodoById(this.state.currentTodo.id, this.state.currentTodo)
-            .then(response =>{
-                console.log(response.data);
-                this.setState({completed: true})
-            })
-            .catch(e=>{console.log(e)});           
+        if(this.state.currentTodo.name != "" && this.state.currentTodo.date != ""){
+            TodoService.updateTodoById(this.state.currentTodo.id, this.state.currentTodo)
+                .then(response =>{
+                    console.log(response.data);
+                    this.setState({completed: true})
+                })
+                .catch(e=>{console.log(e)});
+        }
+        else{
+            alert("Name and Dates are compulsory fields.");
+        }
     }
 
     render(){
@@ -91,12 +96,12 @@ export default class EditTodo extends Component{
                 <div className="container">
                     <div className="form-group">
                         <span htmlFor="name">Name</span>
-                        <input type="text" className="form-control" id="TodoName" required 
+                        <input type="text" className="form-control" id="TodoName" required maxLength={20}
                         value={currentTodo.name} onChange={this.onChangeName} name="name" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
-                        <input type="text" className="form-control" id="TodoDescription" required 
+                        <input type="text" className="form-control" id="TodoDescription" maxLength={80}
                         value={currentTodo.description} onChange={this.onChangeDescription} name="description" />
                     </div>
                     <div className="form-group">
@@ -105,7 +110,7 @@ export default class EditTodo extends Component{
                         value={currentTodo.date} onChange={this.onChangeDate} name="date" />
                     </div>
 
-                    <button onClick={this.updateTodo} className="btn btn-success">Update</button>
+                    <button onClick={this.updateTodo} className="btn btn-primary"> Update </button>
                 </div>
             )
         }
