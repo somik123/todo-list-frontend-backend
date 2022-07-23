@@ -29,6 +29,9 @@ public interface TodoDAO {
 			@Bind("desc") String desc, @Bind("date") String date,
 			@Bind("completed") Boolean completed);
 	
+	@SqlUpdate("UPDATE Todo set completed = true WHERE id = :id")
+	void completeTodo(@Bind("id")int id);
+	
 	@SqlUpdate("DELETE FROM Todo WHERE id = :id")
 	void deleteTodo(@Bind("id") int id);
 	

@@ -38,11 +38,11 @@ public class TodoResource {
 		return todoDao.findById(id);
 	}
 	
-	@DELETE
-	@Path("/{id}")
-	public String deleteTodo(@PathParam("id") int id) {
-		todoDao.deleteTodo(id);
-		return "{ \"Result\": \"OK\" }";
+	@GET
+	@Path("/complete/{id}")
+	public Todo completeTodo(@PathParam("id") int id) {
+		todoDao.completeTodo(id);
+		return todoDao.findById(id);
 	}
 	
 	@GET
@@ -60,6 +60,13 @@ public class TodoResource {
 	@Path("/install")
 	public String initialize() {
 		todoDao.createTodoTable();
+		return "{ \"Result\": \"OK\" }";
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	public String deleteTodo(@PathParam("id") int id) {
+		todoDao.deleteTodo(id);
 		return "{ \"Result\": \"OK\" }";
 	}
 }

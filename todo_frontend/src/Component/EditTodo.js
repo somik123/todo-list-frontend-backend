@@ -14,12 +14,10 @@ export default class EditTodo extends Component{
         this.deleteTodo = this.deleteTodo.bind(this);
 
         this.state = {
-            currentTodo: {
-                id: null,
-                name: "",
-                description: "",
-                date: ""
-            },
+            id: 0,
+            name: "",
+            description: "",
+            date: "",
             completed: false
         };
     }
@@ -30,53 +28,40 @@ export default class EditTodo extends Component{
     }
 
     onChangeName(e){
-        const name = e.target.value;
-        this.setState(function(prevState){
-            return{
-                currentTodo: {
-                    ...prevState.currentTodo,
-                    name:name
-                }
-            };
-        });
+        this.setState({name: e.target.value});
     }
 
     onChangeDescription(e){
-        const description = e.target.value;
-        this.setState(function(prevState){
-            return{
-                currentTodo: {
-                    ...prevState.currentTodo,
-                    description: description
-                }
-            };
-        });
+        this.setState({description: e.target.value});
     }
 
     onChangeDate(e){
-        const date = e.target.value;
-        this.setState(function(prevState){
-            return{
-                currentTodo: {
-                    ...prevState.currentTodo,
-                    date: date
-                }
-            };
-        });
+        this.setState({date: e.target.value});
     }
 
     getTodo(id){
         TodoService.getTodoById(id)
             .then(response =>{
-                this.setState({currentTodo: response.data});
+                this.setState({
+                    id: response.data.id,
+                    name: response.data.name,
+                    description: response.data.description,
+                    date: response.data.date
+                });
                 console.log(response.data);
             })
             .catch(e=>{console.log(e)});
     }
 
     updateTodo(){
-        if(this.state.currentTodo.name != "" && this.state.currentTodo.date != ""){
-            TodoService.updateTodoById(this.state.currentTodo.id, this.state.currentTodo)
+        if(this.state.name != "" && this.state.date != ""){
+            var data = {
+                name: this.state.name,
+                description: this.state.description,
+                date: this.state.date,
+                completed: false
+            }
+            TodoService.updateTodoById(this.state.id, data)
                 .then(response =>{
                     console.log(response.data);
                     this.setState({completed: true})
@@ -89,11 +74,11 @@ export default class EditTodo extends Component{
     }
 
 
-    deleteTodo(todo){
-        TodoService.deleteTodo(todo.id)
+    deleteTodo(){
+        TodoService.deleteTodo(this.state.id)
             .then(response => {
                 console.log(response.data);
-                this.refreshList();
+                this.setState({completed: true});
             })
             .catch(e =>{
                 console.log(e);
@@ -102,8 +87,9 @@ export default class EditTodo extends Component{
 
 
     render(){
-        const { currentTodo } = this.state;
-        if(this.state.completed || !currentTodo){
+        const { completed, name, description, date } = this.state;
+        
+        if(completed){
             return ( <Redirect to="/" />)
         }
         else {
@@ -112,17 +98,17 @@ export default class EditTodo extends Component{
                     <div className="form-group">
                         <span htmlFor="name">Name</span>
                         <input type="text" className="form-control" id="TodoName" required maxLength={80}
-                        value={currentTodo.name} onChange={this.onChangeName} name="name" />
+                        value={name} onChange={this.onChangeName} name="name" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
                         <input type="text" className="form-control" id="TodoDescription" maxLength={160}
-                        value={currentTodo.description} onChange={this.onChangeDescription} name="description" />
+                        value={description} onChange={this.onChangeDescription} name="description" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" required 
-                        value={currentTodo.date} onChange={this.onChangeDate} name="date" />
+                        value={date} onChange={this.onChangeDate} name="date" />
                     </div>
 
                     <button onClick={this.updateTodo} className="btn btn-primary"> Update </button>

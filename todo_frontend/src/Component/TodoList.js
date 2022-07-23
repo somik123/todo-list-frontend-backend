@@ -6,7 +6,6 @@ export default class TodoList extends Component {
     constructor(props){
         super(props);
         this.retrieveTodoList = this.retrieveTodoList.bind(this);
-        this.refreshList = this.refreshList.bind(this);
 
         this.onShowAdd = this.onShowAdd.bind(this);
 
@@ -14,6 +13,7 @@ export default class TodoList extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
         this.saveTodo = this.saveTodo.bind(this);
+        this.completeTodo = this.completeTodo.bind(this);
         
 
         this.state = {
@@ -39,10 +39,6 @@ export default class TodoList extends Component {
                 console.log(response.data);
             })
             .catch(e=> {console.log(e)});
-    }
-
-    refreshList(){
-        this.retrieveTodoList();
     }
 
     onShowAdd(){
@@ -74,32 +70,29 @@ export default class TodoList extends Component {
             TodoService.createTodo(data)
                 .then(response => {
                     this.setState({
-                        name: response.data.name,
-                        description: response.data.description,
-                        date: response.data.date,
+                        name: "",
+                        description: "",
+                        date: "",
                         showAdd: false
                     });
                     console.log(response.data);
+                    this.retrieveTodoList();
                 })
                 .catch(e =>{console.log(e)});
-
-                this.refreshList();
         }
         else{
             alert("Name and Date are compulsory fields.");
         }
-            
     }
 
-    newTodo(){
-        this.setState({
-            name: "",
-            description: "",
-            date: "",
-            completed: false
-        });
+    completeTodo(id){
+        TodoService.completeTodoById(id)
+            .then(response =>{
+                console.log(response.data);
+                this.retrieveTodoList();
+            })
+            .catch(e=>{console.log(e)});
     }
-
 
     render(){
         var {todoList, currentTodo, currentIndex, showAdd} = this.state;
@@ -148,8 +141,10 @@ export default class TodoList extends Component {
                                     </div>
                                     <div className="col-1">
                                         <button type="button" 
-                                            className="btn btn-outline-secondary float-right mt-3 mr-2" 
-                                            onClick={()=> this.deleteTodo(todo)}>&#x2610;</button>
+                                            className="btn btn-outline-none float-right mt-3 mr-2" 
+                                            onClick={()=> this.completeTodo(todo.id)}> 
+                                                {todo.checked=="true" ? (<span>&#x2705;</span>) : (<span>&#x2610;</span>)}
+                                            </button>
                                     </div>
                                 </div>
                             </div>
