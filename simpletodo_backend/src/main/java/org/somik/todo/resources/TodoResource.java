@@ -47,7 +47,7 @@ public class TodoResource {
 		if(check == 1)
 			todoDao.completeTodo(id, true);
 		else if(check == 0)
-			todoDao.completeTodo(id, true);
+			todoDao.completeTodo(id, false);
 		
 		return todoDao.findById(id);
 	}

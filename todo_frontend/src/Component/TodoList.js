@@ -100,8 +100,8 @@ export default class TodoList extends Component {
 
     // Display a check mark to indicate the task is complete
     completeTodo(id,status){
-        if(status) check = 1;
-        else check = 0;
+        var check = 1
+        if(status) check = 0;
         // Call API through TodoService
         TodoService.completeTodoById(id, check)
             .then(response =>{
