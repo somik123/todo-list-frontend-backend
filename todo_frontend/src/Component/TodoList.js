@@ -152,22 +152,27 @@ export default class TodoList extends Component {
                         todoList && todoList.map( (todo, index) => (
                             <div className="shadow-sm border border-primary rounded mt-3 text-start pl-3 pr-3 pt-2 pb-2" key={todo.id}>
                                 <div className="row text-start">
-                                    <div className="col-11">
+                                    <div className="col">
+                                        <button type="button" 
+                                            className="btn btn-outline-none float-right mt-3" 
+                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}> 
+                                                {todo.completed ? (
+                                                    <img src="./images/checkbox-tick-sm.png" alt="tick" />
+                                                ) : (
+                                                    <img src="./images/checkbox-empty-sm.png" alt="empty" />
+                                                )}
+                                                
+                                                
+                                        </button>
+
                                         <Link to={"/edit/" + todo.id}>
                                             <h3>{todo.name}</h3>
                                         </Link>
-                                        &#x1F4C5; {todo.date} 
+                                        <img src="./images/calendar-sm.png" alt="calendar" /> &nbsp;
+                                        {todo.date} 
                                         <span className="font-italic">
                                             {todo.description == "" ? "": " - " + todo.description}
                                         </span>
-                                        <br />
-                                    </div>
-                                    <div className="col-1">
-                                        <button type="button" 
-                                            className="btn btn-outline-none float-right mt-3 mr-2" 
-                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}> 
-                                                {todo.completed ? (<span>&#x2705;</span>) : (<span>&#x2610;</span>)}
-                                            </button>
                                     </div>
                                 </div>
                             </div>
