@@ -45,16 +45,19 @@ public class simpletodoApplication extends Application<simpletodoConfiguration> 
 		// Add URL mapping
 		cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
+		// Initialize DB access and set it to mysql db
 		final JdbiFactory factory = new JdbiFactory();
-
 		final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
 
+		// Initialize the database access object
 		final TodoDAO todo = jdbi.onDemand(TodoDAO.class);
 		final TodoResource todoResource = new TodoResource(todo);
 
+		// Initialize the health check
 		final TodoHealthCheck healthCheck = new TodoHealthCheck();
 		environment.healthChecks().register("template", healthCheck);
 
+		// Register the API endpoint
 		environment.jersey().register(todoResource);
 	}
 

@@ -13,11 +13,13 @@ public class simpletodoConfiguration extends Configuration {
     @NotNull
     private DataSourceFactory database = new DataSourceFactory();
 
+	// Setter for the database data source
     @JsonProperty("database")
     public void setDataSourceFactory(DataSourceFactory factory) {
         this.database = factory;
     }
 
+    // Getter for the database data source
     @JsonProperty("database")
     public DataSourceFactory getDataSourceFactory() {
         return database;

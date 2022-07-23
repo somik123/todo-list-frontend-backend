@@ -7,11 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @RegisterRowMapper(TodoMapper.class)
 public class Todo {
 
+	// No argument constructor
 	public Todo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	// Constructor without id
 	public Todo(String name, String description, String date, Boolean completed) {
 		super();
 		this.name = name;
@@ -20,6 +22,7 @@ public class Todo {
 		this.completed = completed;
 	}
 
+	// All argument constructor
 	public Todo(int id, String name, String description, String date, Boolean completed) {
 		super();
 		this.id = id;
@@ -44,6 +47,8 @@ public class Todo {
 	@JsonProperty
 	private Boolean completed;
 
+	// All the setters and getters for the attributes
+	
 	public int getId() {
 		return id;
 	}
@@ -84,6 +89,7 @@ public class Todo {
 		this.completed = completed;
 	}
 
+	// To string for debugging
 	@Override
 	public String toString() {
 		return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + ", completed="

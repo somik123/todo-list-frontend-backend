@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_BASE_URL = "http://130.61.228.199:8080/todo";
+const API_BASE_URL = "http://todo.somik.org:8080/todo";
 
 class TodoDataService{
     createTodo(todo){

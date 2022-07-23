@@ -5,17 +5,17 @@ import { Redirect, Route, Link } from "react-router-dom";
 export default class TodoList extends Component {
     constructor(props){
         super(props);
+
+        // Declare all methods
         this.retrieveTodoList = this.retrieveTodoList.bind(this);
-
         this.onShowAdd = this.onShowAdd.bind(this);
-
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
         this.saveTodo = this.saveTodo.bind(this);
         this.completeTodo = this.completeTodo.bind(this);
         
-
+        // State variables
         this.state = {
             name: "",
             description: "",
@@ -23,16 +23,20 @@ export default class TodoList extends Component {
             completed: false,
 
             showAdd: false,
+            addHasError: false,
 
             todoList: []
         };
     }
 
+    // Get the list of todos from API
     componentDidMount(){
         this.retrieveTodoList();
     }
 
+    // Method to get the data for the full list of Todo from the API
     retrieveTodoList(){
+        // Call API through TodoService
         TodoService.getTodo()
             .then(response => {
                 this.setState({todoList: response.data});
@@ -41,24 +45,29 @@ export default class TodoList extends Component {
             .catch(e=> {console.log(e)});
     }
 
+    // Display the add form to the user
     onShowAdd(){
         this.setState({showAdd: "true"});
     }
 
-
+    // Handle change of name field
     onChangeName(e){
         this.setState({name: e.target.value});
     }
 
+    // Handle change of description field
     onChangeDescription(e){
         this.setState({description: e.target.value});
     }
 
+    // Handle change of date field
     onChangeDate(e){
         this.setState({date: e.target.value});
     }
 
+    // Save the data provided by the user as a new todo task
     saveTodo(){
+        // Ensure all columns are filled up
         if(this.state.name != "" && this.state.date != ""){
             var data = {
                 name: this.state.name,
@@ -67,25 +76,31 @@ export default class TodoList extends Component {
                 completed: false
             };
 
+            // Call API through TodoService
             TodoService.createTodo(data)
                 .then(response => {
                     this.setState({
                         name: "",
                         description: "",
                         date: "",
-                        showAdd: false
+                        showAdd: false,
+                        addHasError: false
                     });
                     console.log(response.data);
+                    // Refresh the todo list display
                     this.retrieveTodoList();
                 })
                 .catch(e =>{console.log(e)});
         }
         else{
-            alert("Name and Date are compulsory fields.");
+            // Set the flag to display the error message
+            this.setState({addHasError: true});
         }
     }
 
+    // Display a check mark to indicate the task is complete
     completeTodo(id){
+        // Call API through TodoService
         TodoService.completeTodoById(id)
             .then(response =>{
                 console.log(response.data);
@@ -95,7 +110,7 @@ export default class TodoList extends Component {
     }
 
     render(){
-        var {todoList, currentTodo, currentIndex, showAdd} = this.state;
+        var {todoList, currentTodo, currentIndex, showAdd, addHasError} = this.state;
 
         return(
             <div className="container">
@@ -104,8 +119,14 @@ export default class TodoList extends Component {
                 </div>
                 {showAdd ? (
                 <div className="shadow-sm border rounded mt-3 text-start p-4">
+                    <h3 className="text-center">Add Task</h3>
+
+                    {addHasError ? ( 
+                        <div class="alert alert-warning mt-4" role="alert">Error: Title or date cannot be empty.</div>
+                    ) : "" }
+
                     <div className="form-group">
-                        <span htmlFor="name">Name</span>
+                        <span htmlFor="name">Title</span>
                         <input type="text" className="form-control" id="TodoName" required maxLength={80}
                         value={this.state.name} onChange={this.onChangeName} name="name" />
                     </div>
@@ -123,7 +144,7 @@ export default class TodoList extends Component {
                         <button onClick={this.saveTodo} className="btn btn-primary"> Save </button>
                     </div>
                 </div>
-                ) : (<div></div>)}
+                ) : ""}
                 <div className="shadow-sm border rounded mt-3 text-start p-4">
                     {
                         todoList && todoList.map( (todo, index) => (

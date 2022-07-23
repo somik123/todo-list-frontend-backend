@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.statement.StatementContext;
 
+// Mapper to map returned rows from mysql to the Todo Object using the all args constructor
 public class TodoMapper implements RowMapper<Todo> {
 
 	@Override

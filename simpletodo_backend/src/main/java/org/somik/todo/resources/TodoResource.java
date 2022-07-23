@@ -25,12 +25,14 @@ public class TodoResource {
 		this.todoDao = todo;
 	}
 	
+	// Handle incoming Add records request
 	@POST
 	public Todo addTodo(Todo todo) {
 		todoDao.insertTodo(todo.getName(), todo.getDescription(), todo.getDate());
-		return todoDao.findByName(todo.getName());
+		return todoDao.findByName(todo.getName()).get(0);
 	}
 	
+	// Handle incoming Update records request
 	@PUT
 	@Path("/{id}")
 	public Todo updateTodo(@PathParam("id") int id, Todo todo) {
@@ -38,6 +40,7 @@ public class TodoResource {
 		return todoDao.findById(id);
 	}
 	
+	// Handle incoming "mark todo as complete" request
 	@GET
 	@Path("/complete/{id}")
 	public Todo completeTodo(@PathParam("id") int id) {
@@ -45,17 +48,20 @@ public class TodoResource {
 		return todoDao.findById(id);
 	}
 	
+	// Return all records in database
 	@GET
 	public List<Todo> getAll() {
 		return todoDao.findAll();
 	}
 	
+	// Return the record that matches this id
 	@GET
 	@Path("/{id}")
 	public Todo getById(@PathParam("id") int id) {
 		return todoDao.findById(id);
 	}
 	
+	// Setup the database tables
 	@GET
 	@Path("/install")
 	public String initialize() {
@@ -63,6 +69,7 @@ public class TodoResource {
 		return "{ \"Result\": \"OK\" }";
 	}
 	
+	// Delete the record that matches this id
 	@DELETE
 	@Path("/{id}")
 	public String deleteTodo(@PathParam("id") int id) {
