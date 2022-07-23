@@ -40,11 +40,15 @@ public class TodoResource {
 		return todoDao.findById(id);
 	}
 	
-	// Handle incoming "mark todo as complete" request
+	// Handle incoming "mark todo as complete/incomplete" request
 	@GET
-	@Path("/complete/{id}")
-	public Todo completeTodo(@PathParam("id") int id) {
-		todoDao.completeTodo(id);
+	@Path("/{id}/{check}")
+	public Todo completeTodo(@PathParam("id") int id, @PathParam("check") int check) {
+		if(check == 1)
+			todoDao.completeTodo(id, true);
+		else if(check == 0)
+			todoDao.completeTodo(id, true);
+		
 		return todoDao.findById(id);
 	}
 	

@@ -138,7 +138,7 @@ export default class EditTodo extends Component{
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" required 
-                        value={date} onChange={this.onChangeDate} name="date" />
+                        value={date} onChange={this.onChangeDate} name="date" min="2022-01-01" max="2032-12-31" />
                     </div>
                     <div className="row">
                         <div className="col-md-6">

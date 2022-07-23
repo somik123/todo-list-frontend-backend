@@ -34,9 +34,9 @@ public interface TodoDAO {
 			@Bind("desc") String desc, @Bind("date") String date,
 			@Bind("completed") Boolean completed);
 	
-	// Mark the record that matches this id as completed
-	@SqlUpdate("UPDATE Todo set completed = true WHERE id = :id")
-	void completeTodo(@Bind("id")int id);
+	// Mark the record that matches this id as completed/incomplete
+	@SqlUpdate("UPDATE Todo set completed = :completed WHERE id = :id")
+	void completeTodo(@Bind("id")int id, @Bind("completed") Boolean completed);
 	
 	// Delete the record that matches this id
 	@SqlUpdate("DELETE FROM Todo WHERE id = :id")

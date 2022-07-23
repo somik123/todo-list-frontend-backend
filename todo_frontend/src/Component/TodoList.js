@@ -99,9 +99,11 @@ export default class TodoList extends Component {
     }
 
     // Display a check mark to indicate the task is complete
-    completeTodo(id){
+    completeTodo(id,status){
+        if(status) check = 1;
+        else check = 0;
         // Call API through TodoService
-        TodoService.completeTodoById(id)
+        TodoService.completeTodoById(id, check)
             .then(response =>{
                 console.log(response.data);
                 this.retrieveTodoList();
@@ -138,7 +140,7 @@ export default class TodoList extends Component {
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" required 
-                        value={this.state.date} onChange={this.onChangeDate} name="date" />
+                        value={this.state.date} onChange={this.onChangeDate} name="date"  min="2022-01-01" max="2032-12-31" />
                     </div>
                     <div className="text-right">
                         <button onClick={this.saveTodo} className="btn btn-primary"> Save </button>
@@ -163,7 +165,7 @@ export default class TodoList extends Component {
                                     <div className="col-1">
                                         <button type="button" 
                                             className="btn btn-outline-none float-right mt-3 mr-2" 
-                                            onClick={()=> this.completeTodo(todo.id)}> 
+                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}> 
                                                 {todo.completed ? (<span>&#x2705;</span>) : (<span>&#x2610;</span>)}
                                             </button>
                                     </div>
