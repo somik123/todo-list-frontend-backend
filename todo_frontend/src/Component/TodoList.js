@@ -143,7 +143,7 @@ export default class TodoList extends Component {
                                         <button type="button" 
                                             className="btn btn-outline-none float-right mt-3 mr-2" 
                                             onClick={()=> this.completeTodo(todo.id)}> 
-                                                {todo.checked=="true" ? (<span>&#x2705;</span>) : (<span>&#x2610;</span>)}
+                                                {todo.completed ? (<span>&#x2705;</span>) : (<span>&#x2610;</span>)}
                                             </button>
                                     </div>
                                 </div>
