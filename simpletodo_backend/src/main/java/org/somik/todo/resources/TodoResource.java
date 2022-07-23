@@ -40,8 +40,9 @@ public class TodoResource {
 	
 	@DELETE
 	@Path("/{id}")
-	public void deleteTodo(@PathParam("id") int id) {
+	public String deleteTodo(@PathParam("id") int id) {
 		todoDao.deleteTodo(id);
+		return "{ \"Result\": \"OK\" }";
 	}
 	
 	@GET
@@ -57,7 +58,8 @@ public class TodoResource {
 	
 	@GET
 	@Path("/install")
-	public void initialize() {
+	public String initialize() {
 		todoDao.createTodoTable();
+		return "{ \"Result\": \"OK\" }";
 	}
 }
