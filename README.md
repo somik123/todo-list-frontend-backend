@@ -32,8 +32,8 @@ If you are accessing it on the server, replace "localhost" with your server ip a
 - GET     /todo 		Get all exising rows from todo list
 - GET     /todo/{id} 		Get one row from todo list by id
 - PUT     /todo/{id} 		Update one row in todo list by id
-- GET     /todo/{id}/1  Mark a task as completed
-- GET     /todo/{id}/0  Mark a task as incompleted
+- GET     /todo/{id}/1          Mark a task as completed
+- GET     /todo/{id}/0          Mark a task as incompleted
 - DELETE  /todo/{id} 		Delete one row from todo list by id
 ```
 
