@@ -40,7 +40,7 @@ export default class TodoList extends Component {
         TodoService.getTodo()
             .then(response => {
                 this.setState({todoList: response.data});
-                console.log(response.data);
+                //console.log(response.data);
             })
             .catch(e=> {console.log(e)});
     }
@@ -86,7 +86,7 @@ export default class TodoList extends Component {
                         showAdd: false,
                         addHasError: false
                     });
-                    console.log(response.data);
+                    //console.log(response.data);
                     
                     if(response.data.name == this.state.name){
                         // Refresh the todo list display
@@ -111,7 +111,7 @@ export default class TodoList extends Component {
         // Call API through TodoService
         TodoService.completeTodoById(id, check)
             .then(response =>{
-                console.log(response.data);
+                //console.log(response.data);
                 this.retrieveTodoList();
             })
             .catch(e=>{console.log(e)});
@@ -130,22 +130,24 @@ export default class TodoList extends Component {
                     <h3 className="text-center">Add Task</h3>
 
                     {addHasError ? ( 
-                        <div class="alert alert-warning mt-4" role="alert">Error: Title or date cannot be empty.</div>
+                        <div className="alert alert-warning mt-4" role="alert" data-testid="error_txt">Error: Title or date cannot be empty.</div>
                     ) : "" }
 
                     <div className="form-group">
                         <span htmlFor="name">Title</span>
                         <input type="text" className="form-control" id="TodoName" required maxLength={80}
-                        value={this.state.name} onChange={this.onChangeName} name="name" />
+                        value={this.state.name} onChange={this.onChangeName} name="name"
+                        placeholder="Title for the new task" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
                         <input type="text" className="form-control" id="TodoDescription" maxLength={160}
-                        value={this.state.description} onChange={this.onChangeDescription} name="description" />
+                        value={this.state.description} onChange={this.onChangeDescription} name="description"
+                        placeholder="Detailed description of the task" />
                     </div>
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
-                        <input type="date" className="form-control" id="TodoDate" required 
+                        <input type="date" className="form-control" id="TodoDate" data-testid="TodoDate" required 
                         value={this.state.date} onChange={this.onChangeDate} name="date"  min="2022-01-01" max="2032-12-31" />
                     </div>
                     <div className="text-right">
@@ -161,14 +163,13 @@ export default class TodoList extends Component {
                                     <div className="col">
                                         <button type="button" 
                                             className="btn btn-outline-none float-right mt-3" 
-                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}> 
+                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}
+                                            data-testid={"Btn_"+todo.name}> 
                                                 {todo.completed ? (
-                                                    <img src="./images/checkbox-tick-sm.png" alt="tick" />
+                                                    <img data-testid={"Img_"+todo.name} src="./images/checkbox-tick-sm.png" alt="tick" />
                                                 ) : (
-                                                    <img src="./images/checkbox-empty-sm.png" alt="empty" />
+                                                    <img data-testid={"Img_"+todo.name} src="./images/checkbox-empty-sm.png" alt="empty" />
                                                 )}
-                                                
-                                                
                                         </button>
 
                                         <Link to={"/edit/" + todo.id}>

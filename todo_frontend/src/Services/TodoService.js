@@ -3,23 +3,23 @@ import axios from "axios"
 const API_BASE_URL = "http://todo.somik.org:8080/todo";
 
 class TodoDataService{
-    createTodo(todo){
-        return axios.post(API_BASE_URL, todo);
+    async createTodo(todo){
+        return await axios.post(API_BASE_URL, todo);
     }
-    getTodo(){
-        return axios.get(API_BASE_URL);
+    async getTodo(){
+        return await axios.get(API_BASE_URL);
     }
-    getTodoById(id){
-        return axios.get(API_BASE_URL + "/" + id);
+    async getTodoById(id){
+        return await axios.get(API_BASE_URL + "/" + id);
     }
-    updateTodoById(id,todo){
-        return axios.put(API_BASE_URL + "/" + id, todo);
+    async updateTodoById(id,todo){
+        return await axios.put(API_BASE_URL + "/" + id, todo);
     }
-    completeTodoById(id,check){
-        return axios.get(API_BASE_URL + "/" + id + "/" + check);
+    async completeTodoById(id,check){
+        return await axios.get(API_BASE_URL + "/" + id + "/" + check);
     }
-    deleteTodo(id){
-        return axios.delete(API_BASE_URL + "/" + id);
+    async deleteTodo(id){
+        return await axios.delete(API_BASE_URL + "/" + id);
     }
 }
 
