@@ -19,13 +19,12 @@ database:
   # database password
   password: 68yqU1eqg0JfvFTO
   # the JDBC URL for database (db is the docker container name)
-  url: jdbc:mysql://db:3306/todo
+  url: jdbc:mysql://db:3306/todo?autoReconnect=true
   # any properties specific to the JDBC driver:
   properties:
     charSet: UTF-8
   # the maximum amount of time to wait on an empty pool before throwing an exception
   maxWaitForConnection: 15s
-  autoReconnect: true
   # the SQL query to run when validating a connection's liveness
   validationQuery: "/* MyService Health Check */ SELECT 1"
   # the timeout before a connection validation queries fail
