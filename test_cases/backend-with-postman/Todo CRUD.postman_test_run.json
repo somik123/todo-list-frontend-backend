@@ -1,7 +1,7 @@
 {
-	"id": "7e0685c6-53a6-4e03-8216-1670521d472a",
+	"id": "2a679fb9-e211-4dec-97b5-fae733a05689",
 	"name": "Todo CRUD",
-	"timestamp": "2022-07-23T12:24:49.097Z",
+	"timestamp": "2022-07-24T09:29:02.533Z",
 	"collection_id": "0-c0c04228-979e-4cd1-8c2b-43633b91e9d1",
 	"folder_id": 0,
 	"environment_id": "0",
@@ -12,7 +12,7 @@
 			"id": "48e6cc2e-da84-436d-b907-c8204e7ffaab",
 			"name": "Install Test",
 			"url": "http://130.61.228.199:8080/todo/install",
-			"time": 358,
+			"time": 187,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -27,7 +27,7 @@
 				}
 			},
 			"times": [
-				358
+				187
 			],
 			"allTests": [
 				{
@@ -39,7 +39,7 @@
 			"id": "1f64b25c-ad69-4f09-a539-c0ea3aeb8265",
 			"name": "Add New",
 			"url": "http://130.61.228.199:8080/todo",
-			"time": 178,
+			"time": 191,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -54,7 +54,7 @@
 				}
 			},
 			"times": [
-				178
+				191
 			],
 			"allTests": [
 				{
@@ -66,7 +66,7 @@
 			"id": "566ec4d0-e2a2-4abc-b96d-b0ace406cce2",
 			"name": "Get All",
 			"url": "http://130.61.228.199:8080/todo",
-			"time": 180,
+			"time": 188,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -81,7 +81,7 @@
 				}
 			},
 			"times": [
-				180
+				188
 			],
 			"allTests": [
 				{
@@ -92,8 +92,8 @@
 		{
 			"id": "79412184-7910-4490-9e9a-9f1456b84399",
 			"name": "Get One",
-			"url": "http://130.61.228.199:8080/todo/34",
-			"time": 174,
+			"url": "http://130.61.228.199:8080/todo/83",
+			"time": 187,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -108,7 +108,7 @@
 				}
 			},
 			"times": [
-				174
+				187
 			],
 			"allTests": [
 				{
@@ -119,8 +119,8 @@
 		{
 			"id": "1909062b-8f55-4afe-bc0b-275e52e49532",
 			"name": "Update One",
-			"url": "http://130.61.228.199:8080/todo/34",
-			"time": 177,
+			"url": "http://130.61.228.199:8080/todo/83",
+			"time": 193,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -135,7 +135,7 @@
 				}
 			},
 			"times": [
-				177
+				193
 			],
 			"allTests": [
 				{
@@ -146,8 +146,8 @@
 		{
 			"id": "c029f8f2-d397-46cc-a561-7c38c2a08c42",
 			"name": "Update Completion Checked",
-			"url": "http://130.61.228.199:8080/todo/34/1",
-			"time": 174,
+			"url": "http://130.61.228.199:8080/todo/83/1",
+			"time": 191,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -162,7 +162,7 @@
 				}
 			},
 			"times": [
-				174
+				191
 			],
 			"allTests": [
 				{
@@ -173,8 +173,8 @@
 		{
 			"id": "0398d63b-a9a3-4d3e-a7d9-64ef6e3836c3",
 			"name": "Update Completion Unchecked",
-			"url": "http://130.61.228.199:8080/todo/34/0",
-			"time": 174,
+			"url": "http://130.61.228.199:8080/todo/83/0",
+			"time": 193,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -189,7 +189,7 @@
 				}
 			},
 			"times": [
-				174
+				193
 			],
 			"allTests": [
 				{
@@ -200,8 +200,8 @@
 		{
 			"id": "e359547b-65fd-44ae-92b6-c7c89eca8281",
 			"name": "Confirm Item exists",
-			"url": "http://130.61.228.199:8080/todo/34",
-			"time": 173,
+			"url": "http://130.61.228.199:8080/todo/83",
+			"time": 188,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -216,7 +216,7 @@
 				}
 			},
 			"times": [
-				173
+				188
 			],
 			"allTests": [
 				{
@@ -227,8 +227,8 @@
 		{
 			"id": "585d14e9-de67-4cf4-b849-09a6686b85be",
 			"name": "Delete One",
-			"url": "http://130.61.228.199:8080/todo/34",
-			"time": 175,
+			"url": "http://130.61.228.199:8080/todo/83",
+			"time": 188,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -243,7 +243,7 @@
 				}
 			},
 			"times": [
-				175
+				188
 			],
 			"allTests": [
 				{
@@ -254,8 +254,8 @@
 		{
 			"id": "fe08562a-96d9-45db-89ea-74a6740a5fc2",
 			"name": "Confirm Item deleted",
-			"url": "http://130.61.228.199:8080/todo/34",
-			"time": 174,
+			"url": "http://130.61.228.199:8080/todo/83",
+			"time": 187,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
@@ -270,7 +270,7 @@
 				}
 			},
 			"times": [
-				174
+				187
 			],
 			"allTests": [
 				{
@@ -280,7 +280,7 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 1937,
+	"totalTime": 1893,
 	"collection": {
 		"requests": [
 			{

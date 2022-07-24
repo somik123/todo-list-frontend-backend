@@ -447,7 +447,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8080/todo",
+			"value": "http://130.61.228.199:8080/todo",
 			"type": "default"
 		},
 		{
