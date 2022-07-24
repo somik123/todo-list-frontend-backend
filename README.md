@@ -21,6 +21,12 @@ Do note that on first use, you need to setup the database by using the Installer
 
 If you are accessing it on the server, replace "localhost" with your server ip address like: http://123.12.23.34:8080/todo/install
 
+Setup two reverse proxies:
+https://domain.com -> http://123.12.23.34:3080 (for frontend)
+https://domain.com/todo -> http://123.12.23.34:8080 (for backend)
+
+And you are done.
+
 ------------
 
 ###The rest endpoints are:
@@ -29,11 +35,11 @@ If you are accessing it on the server, replace "localhost" with your server ip a
 - GET     /todo/install		Setup tables in the database
 
 - POST    /todo 		Insert in todo list
-- GET     /todo 		Get all exising rows from todo list
+- GET     /todo 		Get all existing rows from todo list
 - GET     /todo/{id} 		Get one row from todo list by id
 - PUT     /todo/{id} 		Update one row in todo list by id
 - GET     /todo/{id}/1          Mark a task as completed
-- GET     /todo/{id}/0          Mark a task as incompleted
+- GET     /todo/{id}/0          Mark a task as incomplete
 - DELETE  /todo/{id} 		Delete one row from todo list by id
 ```
 

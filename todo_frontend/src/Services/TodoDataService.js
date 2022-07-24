@@ -1,7 +1,6 @@
 import axios from "axios"
 
-// Url for backend API
-const API_BASE_URL = "http://todo.somik.org:8080/todo";
+const API_BASE_URL = "/todo";
 
 class TodoDataService{
     async createTodo(todo){

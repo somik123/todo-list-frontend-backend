@@ -18,7 +18,7 @@ public interface TodoDao {
 						+ "id INT NOT NULL AUTO_INCREMENT,"
 						+ "PRIMARY KEY (id), "
 						+ "name varchar(100), "
-						+ "description varchar(200), "
+						+ "description varchar(9000), "
 						+ "date date, "
 						+ "completed BOOLEAN DEFAULT false"
 					+ ")")

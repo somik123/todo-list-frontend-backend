@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import TodoService from "../Services/TodoDataService";
 import { Redirect, Route, Link } from "react-router-dom";
+import Linkify from "linkify-react";
+
 
 export default class TodoList extends Component {
     constructor(props){
@@ -119,9 +121,16 @@ export default class TodoList extends Component {
             })
             .catch(e=>{console.log(e)});
     }
+    
+
 
     render(){
         var {todoList, currentTodo, currentIndex, showAdd, addHasError} = this.state;
+
+        const options = { 
+            defaultProtocol: "https",
+            target: "_blank",
+        };
 
         return(
             <div className="container">
@@ -153,9 +162,8 @@ export default class TodoList extends Component {
                     {/* Input group for description */}
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
-                        <input type="text" className="form-control" id="TodoDescription" maxLength={160}
-                        value={this.state.description} onChange={this.onChangeDescription} name="description"
-                        placeholder="Detailed description of the task" />
+                        <textarea className="form-control" id="TodoDescription" onChange={this.onChangeDescription} 
+                        name="description">{this.state.description}</textarea>
                     </div>
 
                     {/* Input group for date */}
@@ -185,7 +193,7 @@ export default class TodoList extends Component {
                                         {/* The button with image that shows whether the task is complete or not */}
                                         <button type="button" 
                                             className="btn btn-outline-none float-right mt-3" 
-                                            onClick={()=> this.completeTodo(todo.id,todo.completed)}
+                                            onClick={() => this.completeTodo(todo.id,todo.completed)}
                                             data-testid={"Btn_"+todo.name}> 
                                                 {todo.completed ? (
                                                     <img data-testid={"Img_"+todo.name} src="./images/checkbox-tick-sm.png" alt="tick" />
@@ -201,10 +209,12 @@ export default class TodoList extends Component {
 
                                         {/* Display the calendar icon & date (and description if any) */}
                                         <img src="./images/calendar-sm.png" alt="calendar" /> &nbsp;
-                                        {todo.date} 
-                                        <span className="font-italic">
-                                            {todo.description == "" ? "": " - " + todo.description}
-                                        </span>
+                                        {todo.date}
+                                        {todo.description == "" ? "" : (
+                                            <Linkify as="div" options={options}>
+                                            {todo.description}
+                                          </Linkify>
+                                        )}
                                     </div>
                                 </div>
                             </div>

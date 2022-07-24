@@ -11,8 +11,6 @@ services:
       MYSQL_PASSWORD: 68yqU1eqg0JfvFTO
       MYSQL_DATABASE: todo
       MYSQL_USER: todo
-    ports:
-      - 3306:3306
 
   frontend_react:
     container_name: frontend
@@ -24,7 +22,7 @@ services:
         environment: dev
         status: stable
     ports:
-      - 3000:3000
+      - 3080:80
 
   backend:
     container_name: backend
