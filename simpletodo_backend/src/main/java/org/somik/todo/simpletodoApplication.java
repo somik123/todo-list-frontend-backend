@@ -4,9 +4,10 @@ import java.util.EnumSet;
 
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.jdbi.v3.core.Jdbi;
-import org.somik.todo.dao.TodoDAO;
+import org.somik.todo.dao.TodoDao;
 import org.somik.todo.health.TodoHealthCheck;
 import org.somik.todo.resources.TodoResource;
+import org.somik.todo.service.TodoService;
 
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
@@ -50,8 +51,13 @@ public class simpletodoApplication extends Application<simpletodoConfiguration> 
 		final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "mysql");
 
 		// Initialize the database access object
-		final TodoDAO todo = jdbi.onDemand(TodoDAO.class);
-		final TodoResource todoResource = new TodoResource(todo);
+		final TodoDao todoDao = jdbi.onDemand(TodoDao.class);
+		
+		// Initialize the service layer
+		final TodoService todoService = new TodoService(todoDao);
+		
+		// Initialize the API endpoint
+		final TodoResource todoResource = new TodoResource(todoService);
 
 		// Initialize the health check
 		final TodoHealthCheck healthCheck = new TodoHealthCheck();

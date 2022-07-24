@@ -11,7 +11,7 @@ import org.somik.todo.api.TodoMapper;
 
 // Data access object interface like JpaRepository in Spring boot
 @RegisterRowMapper(TodoMapper.class)
-public interface TodoDAO {
+public interface TodoDao {
 	
 	// Create table in DB
 	@SqlUpdate("CREATE TABLE IF NOT EXISTS Todo ("
