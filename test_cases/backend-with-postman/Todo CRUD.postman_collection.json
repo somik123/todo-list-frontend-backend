@@ -447,12 +447,12 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://130.61.228.199:8080/todo",
+			"value": "http://localhost:8080/todo",
 			"type": "default"
 		},
 		{
 			"key": "og_json",
-			"value": "{\"name\":\"Test Data Add\",\"description\":\"This data was added by PostMan\",\"date\":\"2022-07-23\",\"completed\":false}",
+			"value": "{\"name\":\"Test Data Add\",\"description\":\"This data was added by PostMan\",\"date\":\"2022-07-24\",\"completed\":false}",
 			"type": "default"
 		},
 		{

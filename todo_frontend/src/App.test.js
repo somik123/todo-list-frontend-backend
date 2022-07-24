@@ -8,3 +8,10 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 */
+
+test('checks title is rendered', async () => {
+  render(<App />);
+  const txtTitle = await screen.findByText(/Simple Todo List/i);
+  expect(txtTitle).toBeInTheDocument();
+});
+

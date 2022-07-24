@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, Route } from "react-router-dom";
-import TodoService from "../Services/TodoService";
+import TodoService from "../Services/TodoDataService";
 
 export default class EditTodo extends Component{
     constructor(props){
@@ -126,33 +126,46 @@ export default class EditTodo extends Component{
         else {
             return(
                 <div className="container">
+
                     <h3 className="text-center">Edit Task</h3>
+
+                    {/* Display the error message if there are any errors */}
                     {editHasError ? ( 
                         <div class="alert alert-warning mt-4" role="alert">Error: Title or date cannot be empty.</div>
                     ) : "" }
+
+                    {/* The input group for title */}
                     <div className="form-group">
                         <span htmlFor="name">Title</span>
                         <input type="text" className="form-control" id="TodoName" required maxLength={80}
                         value={name} onChange={this.onChangeName} name="name" />
                     </div>
+
+                    {/* The input group for description */}
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
                         <input type="text" className="form-control" id="TodoDescription" maxLength={160}
                         value={description} onChange={this.onChangeDescription} name="description" />
                     </div>
+
+                    {/* The input group for date */}
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" required 
                         value={date} onChange={this.onChangeDate} name="date" min="2022-01-01" max="2032-12-31" />
                     </div>
+
+                    {/* The input group for submit and delete buttons */}
                     <div className="row">
-                        <div className="col-md-6">
-                            <button onClick={this.updateTodo} className="btn btn-primary"> Update </button>
-                        </div>
-                        <div className="col-md-6 text-right">
+                        <div className="col">
                             <button onClick={()=> this.deleteTodo(id)} className="btn btn-danger"> Delete </button>
                         </div>
+                        <div className="col text-right">
+                            <button onClick={this.updateTodo} className="btn btn-primary"> Update </button>
+                        </div>
                     </div>
+                    
+                    <div className="mb-5"></div>
                 </div>
             )
         }

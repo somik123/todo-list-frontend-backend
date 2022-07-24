@@ -23,7 +23,6 @@ public class TodoResource {
 
 	public TodoResource(TodoService todo) {
 		this.todoService = todo;
-
 	}
 
 	// Handle incoming Add records request

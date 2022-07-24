@@ -1,0 +1,7 @@
+Test Suites: 2 passed, 2 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        11.158 s
+Ran all test suites related to changed files.
+
+Watch Usage: Press w to show more.

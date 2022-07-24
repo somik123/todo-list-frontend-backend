@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import TodoService from "../Services/TodoService";
+import TodoService from "../Services/TodoDataService";
 import { Redirect, Route, Link } from "react-router-dom";
 
 export default class TodoList extends Component {
@@ -40,14 +40,17 @@ export default class TodoList extends Component {
         TodoService.getTodo()
             .then(response => {
                 this.setState({todoList: response.data});
-                //console.log(response.data);
+                console.log(response.data);
             })
             .catch(e=> {console.log(e)});
     }
 
     // Display the add form to the user
     onShowAdd(){
-        this.setState({showAdd: "true"});
+        if(this.state.showAdd == false)
+            this.setState({showAdd: true});
+        else
+            this.setState({showAdd: false});
     }
 
     // Handle change of name field
@@ -86,7 +89,7 @@ export default class TodoList extends Component {
                         showAdd: false,
                         addHasError: false
                     });
-                    //console.log(response.data);
+                    console.log(response.data);
                     
                     if(response.data.name == this.state.name){
                         // Refresh the todo list display
@@ -111,7 +114,7 @@ export default class TodoList extends Component {
         // Call API through TodoService
         TodoService.completeTodoById(id, check)
             .then(response =>{
-                //console.log(response.data);
+                console.log(response.data);
                 this.retrieveTodoList();
             })
             .catch(e=>{console.log(e)});
@@ -122,45 +125,64 @@ export default class TodoList extends Component {
 
         return(
             <div className="container">
-                <div className="text-right">
-                    <button type="button" onClick={this.onShowAdd} className="btn btn-primary" >New Todo</button>
+                
+                {/* This button is used to display the "Add Task Form" when clicked */}
+                <div>
+                    <button type="button" onClick={this.onShowAdd} className="btn btn-primary float-right" >New Todo</button>
+                    <button type="button" onClick={this.retrieveTodoList} className="btn btn-outline-light" >Reload</button>
                 </div>
+
+                {/* The HTML block for add task form starts here */}
                 {showAdd ? (
                 <div className="shadow-sm border rounded mt-3 text-start p-4">
                     <h3 className="text-center">Add Task</h3>
 
+                    {/* If there are errors, display the error message */}
                     {addHasError ? ( 
                         <div className="alert alert-warning mt-4" role="alert" data-testid="error_txt">Error: Title or date cannot be empty.</div>
                     ) : "" }
 
+                    {/* Input group for tite */}
                     <div className="form-group">
                         <span htmlFor="name">Title</span>
                         <input type="text" className="form-control" id="TodoName" required maxLength={80}
                         value={this.state.name} onChange={this.onChangeName} name="name"
                         placeholder="Title for the new task" />
                     </div>
+
+                    {/* Input group for description */}
                     <div className="form-group">
                         <span htmlFor="description">Description</span>
                         <input type="text" className="form-control" id="TodoDescription" maxLength={160}
                         value={this.state.description} onChange={this.onChangeDescription} name="description"
                         placeholder="Detailed description of the task" />
                     </div>
+
+                    {/* Input group for date */}
                     <div className="form-group">
                         <span htmlFor="date">Date</span>
                         <input type="date" className="form-control" id="TodoDate" data-testid="TodoDate" required 
                         value={this.state.date} onChange={this.onChangeDate} name="date"  min="2022-01-01" max="2032-12-31" />
                     </div>
+
+                    {/* Submit button */}
                     <div className="text-right">
                         <button onClick={this.saveTodo} className="btn btn-primary"> Save </button>
                     </div>
                 </div>
                 ) : ""}
+                {/* The HTML block for add task form ends here */}
+                
+                {/* The HTML block for list of tasks starts here */}
                 <div className="shadow-sm border rounded mt-3 text-start p-4">
                     {
+                        // Loop through the list and display for each task
                         todoList && todoList.map( (todo, index) => (
                             <div className="shadow-sm border border-primary rounded mt-3 text-start pl-3 pr-3 pt-2 pb-2" key={todo.id}>
                                 <div className="row text-start">
                                     <div className="col">
+
+                                        {/* The button with image that shows whether the task is complete or not */}
                                         <button type="button" 
                                             className="btn btn-outline-none float-right mt-3" 
                                             onClick={()=> this.completeTodo(todo.id,todo.completed)}
@@ -172,9 +194,12 @@ export default class TodoList extends Component {
                                                 )}
                                         </button>
 
+                                        {/* Bring the user to edit option if the title is clicked */}
                                         <Link to={"/edit/" + todo.id}>
                                             <h3>{todo.name}</h3>
                                         </Link>
+
+                                        {/* Display the calendar icon & date (and description if any) */}
                                         <img src="./images/calendar-sm.png" alt="calendar" /> &nbsp;
                                         {todo.date} 
                                         <span className="font-italic">
@@ -186,6 +211,9 @@ export default class TodoList extends Component {
                         ))
                     }
                 </div>
+                {/* The HTML block for list of tasks ends here */}
+
+                <div className="mb-5"></div>
             </div>
         )
     }

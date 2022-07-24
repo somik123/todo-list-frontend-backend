@@ -15,15 +15,7 @@ const task = ["New test task " + rand, "This is the test task " + rand + " that 
 
 
 
-test('checks title is rendered', async () => {
-  render(<App />);
-  const txtTitle = await screen.findByText(/Simple Todo List/i);
-  expect(txtTitle).toBeInTheDocument();
-});
-
-
-
-test('Checks add button is rendered', async () => {
+test('Checks Add Task button is rendered', async () => {
   render(<App />);
   const newButton = await screen.findByRole("button", {name: /New Todo/i} );
   expect(newButton).toBeInTheDocument();
@@ -31,7 +23,7 @@ test('Checks add button is rendered', async () => {
 
 
 
-test('Checks add task is displayed on button click', async () => {
+test('Checks if the Add Task Form is displayed on button click', async () => {
   await act(async () => {
     render(<App />);
   });
@@ -88,7 +80,7 @@ test('Ensure task was added successfully', async () => {
 
 
 
-test('Tick the checkbox button for the task that was added', async () =>{
+test('Tick the checkbox for the task that was added', async () =>{
   render(<App />);
 
   const btnRegex = new RegExp("Btn_"+task[0],"i");
@@ -137,9 +129,6 @@ test('Confirm it shows as unchecked', async () =>{
   const checkCompleteButtonImg = await screen.findByTestId(imgRegex);
   expect(checkCompleteButtonImg).toBeInTheDocument();
   expect(checkCompleteButtonImg.src).toBe("http://localhost/images/checkbox-empty-sm.png");
-
-  // Check tickbox for next validation
-  await new Promise((r) => setTimeout(r, 2000));
 });
 
 

@@ -7,7 +7,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.somik.todo.dao.TodoDao;
 import org.somik.todo.health.TodoHealthCheck;
 import org.somik.todo.resources.TodoResource;
-import org.somik.todo.service.TodoService;
+import org.somik.todo.service.TodoServiceImpl;
 
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
@@ -54,7 +54,7 @@ public class simpletodoApplication extends Application<simpletodoConfiguration> 
 		final TodoDao todoDao = jdbi.onDemand(TodoDao.class);
 		
 		// Initialize the service layer
-		final TodoService todoService = new TodoService(todoDao);
+		final TodoServiceImpl todoService = new TodoServiceImpl(todoDao);
 		
 		// Initialize the API endpoint
 		final TodoResource todoResource = new TodoResource(todoService);

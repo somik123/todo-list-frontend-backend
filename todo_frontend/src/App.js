@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import TodoList from './Component/TodoList';
-import EditTodo from './Component/EditTodo';
+import TodoList from './Components/TodoList';
+import EditTodo from './Components/EditTodo';
 
 
 function App() {
