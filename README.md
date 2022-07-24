@@ -2,11 +2,14 @@
 ## Simple Todo List built using Java and ReactJS
 
 ------------
-### Quick start:
+### Quick start (Need Docker with Docker compose plugin):
 Clone it to your computer/server with:
 ``` git clone https://github.com/somik123/todo-list.git ```
 
-And run it with docker compose (Need Docker with Docker compose plugin):
+Compile it with:
+``` sudo docker compose build ```
+
+And run it with docker compose :
 ``` sudo docker compose up -d ```
 
 It'll take a bit of time to compile the front-end and back-end docker images and once done, it'll launch 3 docker containers, containing MariaDB, Java RESTful CRUD and ReactJS.
